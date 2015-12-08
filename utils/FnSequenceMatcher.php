@@ -21,12 +21,12 @@ final class FnSequenceMatcher extends Phobject {
     Filesystem::writeFile($file_a, implode('', $this->a));
     Filesystem::writeFile($file_b, implode('', $this->b));
 
-    $diffFuture = new ExecFuture('diff -U0 %s %s', $file_a, $file_b);
-    list($err, $stdout, $stderr) = $diffFuture->resolve();
+    $diff_future = new ExecFuture('diff -U0 %s %s', $file_a, $file_b);
+    list($err, $stdout, $stderr) = $diff_future->resolve();
     if (!in_array($err, array(0, 1))) {
       throw new CommandException(
         pht('`diff` returned unexpected exit code %d', $err),
-        $diffFuture->getCommand(),
+        $diff_future->getCommand(),
         $err,
         $stdout,
         $stderr);
@@ -47,12 +47,12 @@ final class FnSequenceMatcher extends Phobject {
       //
       // http://www.gnu.org/software/diffutils/manual/html_node/Detailed-Unified.html:
       //     If a hunk contains just one line, only its start line number
-      //     appears.  Otherwise its line numbers look like ‘start,count’. An
+      //     appears.  Otherwise its line numbers look like 'start,count'. An
       //     empty hunk is considered to start at the line that follows the
       //     hunk.
       //
       //     If a hunk and its context contain two or more lines, its line
-      //     numbers look like ‘start,count’. Otherwise only its end line
+      //     numbers look like 'start,count'. Otherwise only its end line
       //     number appears.  An empty hunk is considered to end at the line
       //     that precedes the hunk.
 
@@ -72,7 +72,7 @@ final class FnSequenceMatcher extends Phobject {
       if (!($li || $lj)) {
         throw new CommandException(
           pht('Malformed output from `diff`.'),
-          $diffFuture->getCommand(),
+          $diff_future->getCommand(),
           $err,
           $stdout,
           $stderr);
@@ -80,7 +80,7 @@ final class FnSequenceMatcher extends Phobject {
 
       if ($li === 0) {
         $op_codes[] = array('insert', $i + 1, $i + 1, $j, $j + $lj);
-      } elseif ($lj === 0) {
+      } else if ($lj === 0) {
         $op_codes[] = array('delete', $i, $i + $li, $j, $j);
       } else {
         $op_codes[] = array('replace', $i, $i + $li, $j, $j + $lj);

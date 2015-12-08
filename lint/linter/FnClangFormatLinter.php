@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Uses the clang format to format C/C++/Obj-C code
  */
