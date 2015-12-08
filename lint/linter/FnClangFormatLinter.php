@@ -131,9 +131,11 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
       $messages[] = id(new ArcanistLintMessage())
         ->setBypassChangedLineFiltering(true)
         ->setPath($path)
-        ->setCode('CFMT')
+        ->setCode($this->getLinterName())
         ->setSeverity(ArcanistLintSeverity::SEVERITY_AUTOFIX)
         ->setName('Formatting suggestion')
+        ->setDescription(pht('%s suggestes an alternative formatting.',
+                             $this->getLinterName()))
         ->setLine($i1 + 1)
         ->setChar(1)
         ->setOriginalText(
