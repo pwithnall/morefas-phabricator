@@ -1,3 +1,3 @@
 <?php
 
-phutil_register_library('objc-format-linter', __FILE__);
+phutil_register_library('fn-phabricator-linters', __FILE__);
