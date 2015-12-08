@@ -10,12 +10,14 @@ phutil_register_library_map(array(
   '__library_version__' => 2,
   'class' => array(
     'FnClangFormatLinter' => 'lint/linter/FnClangFormatLinter.php',
+    'FnCpplintLinter' => 'lint/linter/FnCpplintLinter.php',
     'FnSequenceMatcher' => 'utils/FnSequenceMatcher.php',
     'FnYAPFLinter' => 'lint/linter/FnYAPFLinter.php',
   ),
   'function' => array(),
   'xmap' => array(
     'FnClangFormatLinter' => 'ArcanistExternalLinter',
+    'FnCpplintLinter' => 'ArcanistExternalLinter',
     'FnSequenceMatcher' => 'Phobject',
     'FnYAPFLinter' => 'ArcanistExternalLinter',
   ),
