@@ -84,15 +84,13 @@ final class FnYAPFLinter extends ArcanistExternalLinter {
 
   protected function getPathArgumentForLinterFuture($path) {
     $full_path = Filesystem::resolvePath($path);
-    $engine = $this->getEngine();
-    $project_root = $engine->getWorkingCopy()->getProjectRoot();
-
-    $args = array($full_path);
+    $ret = array($full_path);
 
     // The |path| we get fed needs to be made relative to the project_root,
     // otherwise the |engine| won't recognise it.
-    $relative_path = Filesystem::readablePath($full_path, $project_root);
-    $changed = $engine->getPathChangedLines($relative_path);
+    $relative_path = Filesystem::readablePath(
+      $full_path, $this->getProjectRoot());
+    $changed = $this->getEngine()->getPathChangedLines($relative_path);
 
     if ($changed !== null) {
       // Convert the ordered set of changed lines to a list of ranges.
@@ -112,11 +110,10 @@ final class FnYAPFLinter extends ArcanistExternalLinter {
       }
 
       foreach ($ranges as $range) {
-        $args[] = sprintf('--lines=%d-%d', $range[0], $range[1]);
+        $ret[] = sprintf('--lines=%d-%d', $range[0], $range[1]);
       }
     }
-
-    return csprintf('%Ls', $args);
+    return csprintf('%Ls', $ret);
   }
 
   protected function parseLinterOutput($path, $err, $stdout, $stderr) {
