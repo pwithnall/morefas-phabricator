@@ -11,6 +11,7 @@ phutil_register_library_map(array(
   'class' => array(
     'FnClangFormatLinter' => 'lint/linter/FnClangFormatLinter.php',
     'FnCpplintLinter' => 'lint/linter/FnCpplintLinter.php',
+    'FnGlslangLinter' => 'lint/linter/FnGlslangLinter.php',
     'FnSequenceMatcher' => 'utils/FnSequenceMatcher.php',
     'FnYAPFLinter' => 'lint/linter/FnYAPFLinter.php',
   ),
@@ -18,6 +19,7 @@ phutil_register_library_map(array(
   'xmap' => array(
     'FnClangFormatLinter' => 'ArcanistExternalLinter',
     'FnCpplintLinter' => 'ArcanistExternalLinter',
+    'FnGlslangLinter' => 'ArcanistExternalLinter',
     'FnSequenceMatcher' => 'Phobject',
     'FnYAPFLinter' => 'ArcanistExternalLinter',
   ),
