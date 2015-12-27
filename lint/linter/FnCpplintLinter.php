@@ -1,12 +1,24 @@
 <?php
 
 /**
- * Uses Google's `cpplint.py` to check code.
+ * Uses Google's `cpplint` to check code.
  */
 final class FnCpplintLinter extends ArcanistExternalLinter {
 
+  public function getInfoName() {
+    return 'CppLint';
+  }
+
+  public function getInfoURI() {
+    return 'https://github.com/google/styleguide/tree/gh-pages/cpplint';
+  }
+
+  public function getInfoDescription() {
+    return pht('Google\'s linter for C++ code');
+  }
+
   public function getLinterName() {
-    return "C++ Google's Styleguide";
+    return 'CPPLINT';
   }
 
   public function getLinterConfigurationName() {
@@ -18,7 +30,7 @@ final class FnCpplintLinter extends ArcanistExternalLinter {
   }
 
   public function getInstallInstructions() {
-    return pht('Install cpplint.py using `%s`.', 'pip install cpplint');
+    return pht('`wget https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py`');
   }
 
   protected function getDefaultMessageSeverity($code) {

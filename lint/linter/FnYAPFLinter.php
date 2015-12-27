@@ -47,10 +47,6 @@ final class FnYAPFLinter extends ArcanistExternalLinter {
     return pht('pip install yapf');
   }
 
-  public function shouldExpectCommandErrors() {
-    return true;
-  }
-
   protected function getMandatoryFlags() {
     $options = array();
     $options[] = sprintf('--style=%s', coalesce($this->style, 'pep8'));
@@ -137,7 +133,7 @@ final class FnYAPFLinter extends ArcanistExternalLinter {
         ->setSeverity(ArcanistLintSeverity::SEVERITY_AUTOFIX)
         ->setName('Formatting suggestion')
         ->setDescription(pht('%s suggestes an alternative formatting.',
-                             $this->getLinterName()))
+                             $this->getInfoName()))
         ->setLine($i1 + 1)
         ->setChar(1)
         ->setOriginalText(

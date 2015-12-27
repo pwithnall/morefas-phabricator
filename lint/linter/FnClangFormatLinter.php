@@ -8,7 +8,7 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
   private $style;
 
   public function getInfoName() {
-    return 'clang-format';
+    return 'ClangFormat';
   }
 
   public function getInfoURI() {
@@ -21,7 +21,7 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
   }
 
   public function getLinterName() {
-    return 'clang-format';
+    return 'CLANGFORMAT';
   }
 
   public function getLinterConfigurationName() {
@@ -132,7 +132,7 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
         ->setSeverity(ArcanistLintSeverity::SEVERITY_AUTOFIX)
         ->setName('Formatting suggestion')
         ->setDescription(pht('%s suggestes an alternative formatting.',
-                             $this->getLinterName()))
+                             $this->getInfoName()))
         ->setLine($i1 + 1)
         ->setChar(1)
         ->setOriginalText(
