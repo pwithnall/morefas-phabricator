@@ -25,7 +25,7 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
   }
 
   public function getLinterConfigurationName() {
-    return 'fn-clang-format';
+    return 'clang-format';
   }
 
   public function getDefaultBinary() {
