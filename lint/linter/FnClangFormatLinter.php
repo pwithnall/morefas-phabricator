@@ -8,7 +8,7 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
   private $style;
 
   public function getInfoName() {
-    return 'ClangFormat';
+    return 'clang-format';
   }
 
   public function getInfoURI() {
