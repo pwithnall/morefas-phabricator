@@ -131,7 +131,7 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
         ->setCode($this->getLinterName())
         ->setSeverity(ArcanistLintSeverity::SEVERITY_AUTOFIX)
         ->setName('Formatting suggestion')
-        ->setDescription(pht('%s suggestes an alternative formatting.',
+        ->setDescription(pht('%s suggests an alternative formatting.',
                              $this->getInfoName()))
         ->setLine($i1 + 1)
         ->setChar(1)
