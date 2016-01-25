@@ -48,6 +48,14 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
     return pht('See http://llvm.org/releases/download.html');
   }
 
+  public function getUpgradeInstructions() {
+    return pht('See http://llvm.org/releases/download.html. If you have the ' .
+               'right version installed, but it is not symlinked to ' .
+               '$PATH/%s, you can override the path by setting ' .
+               'lint.%s.bin in ~/.arcrc.',
+               $this->getDefaultBinary(), $this->getLinterConfigurationName());
+  }
+
   public function shouldExpectCommandErrors() {
     return false;
   }
