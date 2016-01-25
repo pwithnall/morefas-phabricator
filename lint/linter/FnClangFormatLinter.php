@@ -125,6 +125,10 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
   }
 
   protected function parseLinterOutput($path, $err, $stdout, $stderr) {
+    /* clang-format only returns a non-zero exit code on bad arguments. */
+    if ($err != 0)
+      return false;
+
     $old_lines = phutil_split_lines($this->getData($path));
     $new_lines = phutil_split_lines($stdout);
     $op_codes = id(new FnSequenceMatcher($old_lines, $new_lines))->getOpCodes();
