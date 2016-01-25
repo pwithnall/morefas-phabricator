@@ -110,7 +110,7 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
       }
 
       foreach ($ranges as $range) {
-        $ret[] = sprintf('--lines=%d:%d', $range[0], $range[1]);
+        $ret[] = sprintf('-lines=%d:%d', $range[0], $range[1]);
       }
     }
     return csprintf('%Ls', $ret);
