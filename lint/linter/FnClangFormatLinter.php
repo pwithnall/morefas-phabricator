@@ -92,7 +92,7 @@ final class FnClangFormatLinter extends ArcanistExternalLinter {
       $full_path, $this->getProjectRoot());
     $changed = $this->getEngine()->getPathChangedLines($relative_path);
 
-    if ($changed !== null) {
+    if ($changed !== null && count(array_filter($changed)) > 0) {
       // Convert the ordered set of changed lines to a list of ranges.
       $changed_lines = array_keys(array_filter($changed));
       $ranges = array(
